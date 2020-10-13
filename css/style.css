@@ -160,3 +160,28 @@ header, #nav-header {
   text-align: center;
   font-size: 200px;
 }
+
+/* FOOTER */
+footer {
+  background-color: var(--gray-dark);
+  color: var(--white);
+  padding: var(--size16) var(--size24);
+}
+
+#nav-footer {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#nav-footer p {
+  font-size: var(--size24);
+}
+
+#footer-menu {
+  list-style: none;
+}
+
+#footer-menu li {
+  padding: var(--size16);
+  font-size: var(--size64);
+}
