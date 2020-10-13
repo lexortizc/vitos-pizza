@@ -31,11 +31,6 @@
   --size64: 4rem; /* 64px */
 }
 
-/* h1, h2, h3, h4, h5 {
-  font-size: 16px;
-  font-weight: normal;
-} */
-
 /* Base Classes */
 .flex {
   display: flex;
@@ -52,6 +47,10 @@
 
 .md-hide {
   display: block;
+}
+
+main {
+  padding: var(--size24) var(--size32);
 }
 
 /* HEADER */
@@ -93,10 +92,10 @@ header, #nav-header {
   border-radius: 32px;
 }
 
-/* BANNER */
+/* SECTION BANNER */
 #section-banner {
-  padding: var(--size24);
   flex-wrap: wrap;
+  padding-bottom: var(--size24);
 }
 
 #section-banner h2 {
@@ -106,8 +105,11 @@ header, #nav-header {
   font-size: var(--size40);
 }
 
-#banner-img {
+#banner-img, #banner-text {
   width: 50%;
+}
+
+#banner-img {
   padding-right: var(--size16);
 }
 
@@ -118,7 +120,6 @@ header, #nav-header {
 }
 
 #banner-text {
-  width: 50%;
   padding-left: var(--size16);
   flex-direction: column;
   justify-content: center;
@@ -132,4 +133,30 @@ header, #nav-header {
 #banner-text p {
   font-size: var(--size24);
   font-weight: 300;
+}
+
+/* SECTION PAYMENTS */
+#section-payments {
+  padding: var(--size24) 0;
+}
+
+#payment-text, #payment-methods, #payment-methods i {
+  width: 50%;
+}
+
+#payment-text {
+  font-size: var(--size24);
+  font-weight: 300;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#payment-methods {
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+#payment-text i, #payment-methods i {
+  text-align: center;
+  font-size: 200px;
 }
