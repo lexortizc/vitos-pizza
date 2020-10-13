@@ -79,13 +79,8 @@ header, #nav-header {
 
 #nav-menu li {
   align-items: center;
-  padding: var(--size8);
-  margin-right: var(--size16);
+  padding: var(--size16);
   font-size: var(--size24);
-}
-
-#nav-menu li:last-child {
-  margin-right: 0;
 }
 
 #nav-menu li:hover {
