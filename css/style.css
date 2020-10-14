@@ -49,10 +49,6 @@
   display: block;
 }
 
-main {
-  padding: var(--size24) var(--size32);
-}
-
 /* HEADER */
 header, #nav-header {
   width: 100%;
@@ -95,7 +91,7 @@ header, #nav-header {
 /* SECTION BANNER */
 #section-banner {
   flex-wrap: wrap;
-  padding-bottom: var(--size24);
+  padding: var(--size24) var(--size32);
 }
 
 #section-banner h2 {
@@ -135,9 +131,89 @@ header, #nav-header {
   font-weight: 300;
 }
 
+/* SECTION PRODUCTS */
+#section-products {
+  background-image: url("https://images.unsplash.com/photo-1531914082256-1b9047242426?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80");
+  padding: var(--size32) var(--size24);
+}
+
+#products-menu {
+  list-style: none;
+  height: 50px;
+  color: var(--white);
+}
+
+#products-menu li {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--red);
+  cursor: pointer;
+}
+
+#products-menu li:hover, .tab-active {
+  background-color: var(--green) !important;
+}
+
+.products-tab {
+  display: none;
+  margin-top: var(--size32);
+}
+
+.product-show {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product {
+  margin: var(--size8);
+}
+
+.product img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 0px 0px 8px;
+}
+
+#product-text {
+  width: 180px;
+  background-color: var(--gray-light);
+  border-radius: 0px 8px 8px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#product-text div {
+  margin: var(--size16);
+  align-items: center;
+}
+
+#product-text ul {
+  list-style: none;
+}
+
+.btn {
+  margin: var(--size16) 0;
+  padding: var(--size8) var(--size16);
+  color: var(--white);
+  background-color: var(--green);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
 /* SECTION PAYMENTS */
 #section-payments {
-  padding: var(--size24) 0;
+  padding: var(--size24) var(--size32);
 }
 
 #payment-text, #payment-methods, #payment-methods i {
