@@ -186,8 +186,8 @@ export default {
         "price": 8.47
       },
       {
-        "id": "cm-03",
-        "name": "Combo 3",
+        "id": "cm-04",
+        "name": "Combo 4",
         "products": [
           {
             "id": "pz-01",
@@ -207,8 +207,8 @@ export default {
         "price": 12.96
       },
       {
-        "id": "cm-04",
-        "name": "Combo 4",
+        "id": "cm-05",
+        "name": "Combo 5",
         "products": [
           {
             "id": "pz-03",
@@ -228,8 +228,8 @@ export default {
         "price": 14.98
       },
       {
-        "id": "cm-04",
-        "name": "Combo 4",
+        "id": "cm-06",
+        "name": "Combo 6",
         "products": [
           {
             "id": "pz-04",
