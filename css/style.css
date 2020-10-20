@@ -80,10 +80,18 @@ header, #nav-header {
   align-items: center;
   padding: var(--size16);
   font-size: var(--size24);
+  cursor: pointer;
 }
 
 #nav-menu li:hover {
   background-color: var(--red);
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: var(--white);
+  height: 100%;
+  align-items: inherit;
 }
 
 #nav-menu-mobile {
