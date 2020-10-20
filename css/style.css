@@ -31,6 +31,10 @@
   --size64: 4rem; /* 64px */
 }
 
+body {
+  background-color: var(--gray-light);
+}
+
 /* Base Classes */
 .flex {
   display: flex;
@@ -41,11 +45,11 @@
   padding-right: var(--size8);
 }
 
-.md-show {
+.md-show, .sm-show {
   display: none;
 }
 
-.md-hide {
+.md-hide, .sm-hide {
   display: block;
 }
 
@@ -67,7 +71,7 @@ header, #nav-header {
   font-size: var(--size32);
 }
 
-#nav-menu {
+#nav-menu, #nav-menu-mobile {
   height: 100%;
   list-style: none;
 }
@@ -80,6 +84,12 @@ header, #nav-header {
 
 #nav-menu li:hover {
   background-color: var(--red);
+}
+
+#nav-menu-mobile {
+  display: none;
+  align-items: center;
+  font-size: var(--size24);
 }
 
 .shopping-cart-items {
@@ -164,7 +174,7 @@ header, #nav-header {
 .product-show {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .product {
@@ -235,11 +245,12 @@ header, #nav-header {
 #payment-text i, #payment-methods i {
   text-align: center;
   font-size: 200px;
+  color: var(--green);
 }
 
 /* FOOTER */
 footer {
-  background-color: var(--gray-dark);
+  background-color: var(--red);
   color: var(--white);
   padding: var(--size16) var(--size24);
 }
@@ -260,4 +271,98 @@ footer {
 #footer-menu li {
   padding: var(--size16);
   font-size: var(--size64);
+}
+
+/* On tablet */
+@media(max-width: 720px) {
+  body {
+    font-size: 12px;
+  }
+  .md-show {
+    display: block;
+  }
+
+  .md-hide {
+    display: none;
+  }
+
+  /* HEADER */
+  #nav-menu {
+    display: none;
+  }
+
+  #nav-menu-mobile {
+    display: flex;
+  }
+
+  /* SECTION BANNER */
+  #section-banner h2 {
+    text-align: left;
+  }
+
+  #banner-img img {
+    height: 100%;
+  }
+
+  /* SECTION PRODUCTS */
+  .product img {
+    width: 110px;
+    height: 100%;
+  }
+
+  #product-text {
+    width: 150px;
+  }
+
+  /* SECTION PAYMENTS */
+  #payment-text p {
+    margin-bottom: var(--size16);
+  }
+
+  #payment-text i, #payment-methods i {
+    font-size: 100px;
+  }
+}
+
+/* On mobile */
+@media(max-width: 640px) {
+  .sm-show {
+    display: block;
+  }
+
+  .sm-hide {
+    display: none;
+  }
+
+  /* SECTION BANNER */
+
+  #banner-img, #banner-text {
+    width: 100%;
+  }
+
+  #section-banner h2 {
+    margin-top: var(--size32);
+  }
+
+  /* SECTION PAYMENTS */
+  #section-payments {
+    flex-wrap: wrap;
+  }
+
+  #payment-text, #payment-methods {
+    width: 100%;
+  }
+
+  #payment-text p {
+    margin-bottom: var(--size32);
+  }
+
+  #payment-methods {
+    flex-wrap: nowrap;
+    align-content: center;
+  }
+
+  #payment-methods i {
+    font-size: 50px;
+  }
 }
