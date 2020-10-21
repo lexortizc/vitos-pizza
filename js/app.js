@@ -8,7 +8,11 @@ const sectionPizza = document.querySelector("#products-pizza");
 const sectionBeverage = document.querySelector("#products-beverages");
 const sectionDessert = document.querySelector("#products-desserts");
 
-const toggleShoppingCart = () => { document.querySelector('#shopping-cart-menu').classList.toggle('hide-cart') }
+const toggleShoppingCart = () => {
+  if(shoppingCartCounter !== 0) {
+    document.querySelector('#shopping-cart-menu').classList.toggle('hide-cart') 
+  }
+}
 document.querySelector('#shopping-cart').addEventListener('click', toggleShoppingCart)
 document.querySelector('#shopping-cart-close i').addEventListener('click', toggleShoppingCart)
 
@@ -21,18 +25,47 @@ const searchProduct = (idProduct) => {
     product = menu.combo.filter( p => p.id === idProduct );
     product = product[0].products;
   }
-  // console.log(product);
   return product
 }
 
-const addProduct = (idProduct) => {
-  const product = searchProduct(idProduct);
-  product.forEach( p => {
+const setShoppingList = (shoppingList) => {
+  localStorage.setItem('localShoppingList', JSON.stringify(shoppingList))
+}
+
+const getShoppingList = () => {
+  let shoppingList = []
+  const localShoppingList = localStorage.getItem('localShoppingList')
+  if(localShoppingList !== null) {
+    shoppingList = JSON.parse(localShoppingList)
+  }
+  return shoppingList
+}
+
+const renderShoppingCart = (products) => {
+  let shoppingCartPay = 0;
+  shoppingCartCounter = 0;
+  shoppingCartTable.innerHTML = `<tr class="bold"><td class="text-center">Producto</td><td class="text-center">Eliminar</td></tr>`
+
+  products.forEach( p => {
     const item = `<tr class="thin"><td>${p.name}</td><td><button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button></td></tr>`
     shoppingCartTable.insertAdjacentHTML('beforeend', item)
     shoppingCartCounter++;
+    shoppingCartPay += parseFloat(p.price);
     document.querySelector('#shopping-cart-items').innerText = shoppingCartCounter.toString();
+    document.querySelector('#shopping-cart-pay span').innerText = `$${shoppingCartPay.toFixed(2)}`;
   })
+}
+
+renderShoppingCart(getShoppingList())
+
+const addProduct = (idProduct) => {
+  const product = searchProduct(idProduct);
+  const products = getShoppingList();
+  for (const i in product) {
+    products.push(product[i]);
+  }
+  setShoppingList(products);
+  renderShoppingCart(getShoppingList());
 }
 
 const renderMenu = (menu) => {
