@@ -1,32 +1,57 @@
+let menu = {};
+let shoppingCartCounter = 0;
 const menuItems = document.querySelectorAll('.menu-item');
+const shoppingCartTable = document.querySelector("#shopping-cart-products");
 const prodMenuItems = document.querySelectorAll('.prod-menu-item');
 const sectionCombo = document.querySelector("#products-combos");
 const sectionPizza = document.querySelector("#products-pizza");
 const sectionBeverage = document.querySelector("#products-beverages");
 const sectionDessert = document.querySelector("#products-desserts");
 
+const toggleShoppingCart = () => { document.querySelector('#shopping-cart-menu').classList.toggle('hide-cart') }
+document.querySelector('#shopping-cart').addEventListener('click', toggleShoppingCart)
+document.querySelector('#shopping-cart-close i').addEventListener('click', toggleShoppingCart)
+
+const searchProduct = (idProduct) => {
+  let product = [];
+  (product.length === 0) ? product = menu.pizza.filter( p => p.id === idProduct ) : null;
+  (product.length === 0) ? product = menu.beverage.filter( p => p.id === idProduct ) : null;
+  (product.length === 0) ? product = menu.dessert.filter( p => p.id === idProduct ) : null;
+  if(product.length === 0) {
+    product = menu.combo.filter( p => p.id === idProduct );
+    product = product[0].products;
+  }
+  // console.log(product);
+  return product
+}
+
+const addProduct = (idProduct) => {
+  const product = searchProduct(idProduct);
+  product.forEach( p => {
+    const item = `<tr class="thin"><td>${p.name}</td><td><button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button></td></tr>`
+    shoppingCartTable.insertAdjacentHTML('beforeend', item)
+    shoppingCartCounter++;
+    document.querySelector('#shopping-cart-items').innerText = shoppingCartCounter.toString();
+  })
+}
+
 const renderMenu = (menu) => {
-  menu.combo.forEach( combo => {
-    sectionCombo.insertAdjacentHTML('beforeend', comboCardTemplate(combo));
-  });
+  menu.combo.forEach( combo => { sectionCombo.insertAdjacentHTML('beforeend', comboCardTemplate(combo)); });
+  menu.pizza.forEach( pizza => { sectionPizza.insertAdjacentHTML('beforeend', foodCardTemplate(pizza)); });
+  menu.beverage.forEach( beverage => { sectionBeverage.insertAdjacentHTML('beforeend', foodCardTemplate(beverage)); });
+  menu.dessert.forEach( dessert => { sectionDessert.insertAdjacentHTML('beforeend', foodCardTemplate(dessert)); });
 
-  menu.pizza.forEach( pizza => {
-    sectionPizza.insertAdjacentHTML('beforeend', foodCardTemplate(pizza));
-  });
-
-  menu.beverage.forEach( beverage => {
-    sectionBeverage.insertAdjacentHTML('beforeend', foodCardTemplate(beverage));
-  });
-
-  menu.dessert.forEach( dessert => {
-    sectionDessert.insertAdjacentHTML('beforeend', foodCardTemplate(dessert));
-  });
+  const btnFood = document.querySelectorAll('.btn-food');
+  btnFood.forEach( btn => { btn.addEventListener('click', (e) => { addProduct(e.target.name) }) })
 }
 
 const getData = () => {
   fetch('../data/menu.json')
-    .then( res => res.json())
-    .then( res => renderMenu(res.menu))
+    .then( res => res.json() )
+    .then( res => {
+      menu = res.menu
+      renderMenu(menu)
+    })
 }
 
 getData();
@@ -79,7 +104,7 @@ const comboCardTemplate = (combo) => {
         <h4 class="px-8">$${combo.price}</h4>
       </div>
       <ul>${products}</ul>
-      <button class="btn">Agregar</button>
+      <button class="btn btn-food" name="${combo.id}">Agregar</button>
     </div>
   </article>`
 }
@@ -96,7 +121,7 @@ const foodCardTemplate = (food) => {
         <h3>${food.name}</h3>
         <h4 class="px-8">$${food.price}</h4>
       </div>
-      <button class="btn">Agregar</button>
+      <button class="btn btn-food" name="${food.id}">Agregar</button>
     </div>
   </article>`
 }

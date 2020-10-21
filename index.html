@@ -15,12 +15,24 @@
         <li class="flex menu-item"><a class="flex" href="#section-products">Pizzas</a></li>
         <li class="flex menu-item"><a class="flex" href="#section-products">Bebidas</a></li>
         <li class="flex menu-item"><a class="flex" href="#section-products">Postres</a></li>
-        <li class="flex"><i class="fas fa-shopping-cart"></i><span class="px-8">Carrito</span><span class="shopping-cart-items">0</span></li>
+        <li id="shopping-cart" class="flex"><i class="fas fa-shopping-cart"><span class="px-8">Carrito</span><span id="shopping-cart-items">0</span></i></li>
       </ul>
       <ul id="nav-menu-mobile">
         <li><i class="fas fa-bars"></i></li>
       </ul>
     </nav>
+    <div id="shopping-cart-menu" class="flex hide-cart">
+      <span id="shopping-cart-close" class="flex"><i class="fas fa-times-circle"></i></span>
+      <h3 class="text-24 bold">Carrito de compras</h3>
+      <table id="shopping-cart-products">
+        <tr class="bold">
+          <td class="text-center">Producto</td>
+          <td class="text-center">Eliminar</td>
+        </tr>
+      </table>
+      <h4 id="shopping-cart-pay">Total a pagar: <span>$0.00</span></h4>
+      <button class="btn">Comprar</button>
+    </div>
   </header>
 
   <main>
