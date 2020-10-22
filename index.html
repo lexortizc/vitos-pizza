@@ -10,15 +10,15 @@
 <body>
   <header>
     <nav id="nav-header" class="flex">
-      <h1>Vito's Pizza</h1>
-      <ul id="nav-menu" class="flex">
+      <div id="nav-menu-mobile" class="flex">
+        <h1>Vito's Pizza</h1>
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul id="nav-menu" class="flex hide-menu-mobile">
         <li class="flex menu-item"><a class="flex" href="#section-products">Pizzas</a></li>
         <li class="flex menu-item"><a class="flex" href="#section-products">Bebidas</a></li>
         <li class="flex menu-item"><a class="flex" href="#section-products">Postres</a></li>
         <li id="shopping-cart" class="flex"><i class="fas fa-shopping-cart"><span class="px-8">Carrito</span><span id="shopping-cart-items">0</span></i></li>
-      </ul>
-      <ul id="nav-menu-mobile">
-        <li><i class="fas fa-bars"></i></li>
       </ul>
     </nav>
     <div id="shopping-cart-menu" class="flex hide-cart">

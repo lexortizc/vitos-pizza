@@ -88,7 +88,7 @@ header, #nav-header {
   font-size: var(--size32);
 }
 
-#nav-menu, #nav-menu-mobile {
+#nav-menu {
   height: 100%;
   list-style: none;
 }
@@ -111,9 +111,8 @@ header, #nav-header {
   align-items: inherit;
 }
 
-#nav-menu-mobile {
+#nav-menu-mobile i {
   display: none;
-  align-items: center;
   font-size: var(--size24);
 }
 
@@ -368,12 +367,34 @@ footer {
   }
 
   /* HEADER */
+  #nav-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   #nav-menu {
-    display: none;
+    padding: var(--size16);
+    width: 100%;
+    height: fit-content;
+    position: fixed;
+    top:80px;
+    left: 0;
+    flex-direction: column;
+    background-color: var(--green);
+  }
+
+  .hide-menu-mobile {
+    left: -100% !important;
   }
 
   #nav-menu-mobile {
-    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #nav-menu-mobile i {
+    display: block;
   }
 
   /* SECTION BANNER */

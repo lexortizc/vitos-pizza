@@ -8,6 +8,15 @@ const sectionPizza = document.querySelector("#products-pizza");
 const sectionBeverage = document.querySelector("#products-beverages");
 const sectionDessert = document.querySelector("#products-desserts");
 
+const toggleMobileMenu = () => {
+  setTimeout( () => {
+    document.querySelector('#nav-menu').classList.toggle('hide-menu-mobile');
+  }, 10)
+}
+
+document.querySelector('#nav-menu-mobile i').addEventListener('mouseover', toggleMobileMenu);
+document.querySelector('#nav-menu-mobile i').addEventListener('mouseout', toggleMobileMenu);
+
 const toggleNotification = () => {
   document.querySelector('#notification').classList.toggle('hide-notification');
 }
