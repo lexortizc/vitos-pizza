@@ -35,6 +35,11 @@ body {
   background-color: var(--gray-light);
 }
 
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 /* Base Classes */
 .bold {
   font-weight: bolder;
@@ -320,7 +325,7 @@ header, #nav-header {
 
 #payment-text i, #payment-methods i {
   text-align: center;
-  font-size: 200px;
+  font-size: 100px;
   color: var(--green);
 }
 
@@ -401,7 +406,7 @@ footer {
 }
 
 /* On mobile */
-@media(max-width: 640px) {
+@media(max-width: 360px) {
   .sm-show {
     display: block;
   }
@@ -439,6 +444,15 @@ footer {
   }
 
   #payment-methods i {
-    font-size: 50px;
+    font-size: 40px;
+  }
+
+  /* FOOTER */
+  #nav-footer {
+    flex-direction: column;
+  }
+
+  #nav-footer p {
+    width: 100%;
   }
 }
