@@ -8,6 +8,10 @@ const sectionPizza = document.querySelector("#products-pizza");
 const sectionBeverage = document.querySelector("#products-beverages");
 const sectionDessert = document.querySelector("#products-desserts");
 
+const toggleNotification = () => {
+  document.querySelector('#notification').classList.toggle('hide-notification');
+}
+
 const toggleShoppingCart = () => {
   const cart = document.querySelector('#shopping-cart-menu');
   if(shoppingCartCounter !== 0 || !cart.classList.contains('hide-cart')) {
@@ -81,6 +85,16 @@ const removeProduct = (index) => {
   (shoppingCart.length === 0) ? toggleShoppingCart() : null;
 }
 
+const buyProduct = () => {
+  setShoppingList([]);
+  renderShoppingCart([]);
+  toggleShoppingCart();
+  toggleNotification();
+  setTimeout(toggleNotification, 2000);
+}
+
+document.querySelector('#btn-buy').addEventListener('click', buyProduct);
+
 const renderMenu = (menu) => {
   menu.combo.forEach( combo => { sectionCombo.insertAdjacentHTML('beforeend', comboCardTemplate(combo)); });
   menu.pizza.forEach( pizza => { sectionPizza.insertAdjacentHTML('beforeend', foodCardTemplate(pizza)); });
@@ -135,11 +149,8 @@ menuItems[2].addEventListener('click', () => showProductSection(prodMenuItems[3]
 const comboCardTemplate = (combo) => {
   let products = "";
   combo.products.forEach( prod => {
-    if(prod.name === prod.description) {
-      products += `<li>${prod.name}</li>`
-    } else {
-      products += `<li>${prod.name} (${prod.description})</li>`
-    }
+    (prod.name !== prod.description) ? prod.name = `${prod.name} (${prod.description})` : null;
+    products += `<li>${prod.name}</li>`
   });
 
   return `<article class="product flex">
