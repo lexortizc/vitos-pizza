@@ -1,5 +1,7 @@
-let menu = {};
+import food from '../data/menu.js';
+
 let shoppingCartCounter = 0;
+const menu = food.menu;
 const menuItems = document.querySelectorAll('.menu-item');
 const shoppingCartTable = document.querySelector("#shopping-cart-products");
 const prodMenuItems = document.querySelectorAll('.prod-menu-item');
@@ -104,57 +106,6 @@ const buyProduct = () => {
 
 document.querySelector('#btn-buy').addEventListener('click', buyProduct);
 
-const renderMenu = (menu) => {
-  menu.combo.forEach( combo => { sectionCombo.insertAdjacentHTML('beforeend', comboCardTemplate(combo)); });
-  menu.pizza.forEach( pizza => { sectionPizza.insertAdjacentHTML('beforeend', foodCardTemplate(pizza)); });
-  menu.beverage.forEach( beverage => { sectionBeverage.insertAdjacentHTML('beforeend', foodCardTemplate(beverage)); });
-  menu.dessert.forEach( dessert => { sectionDessert.insertAdjacentHTML('beforeend', foodCardTemplate(dessert)); });
-
-  const btnFood = document.querySelectorAll('.btn-food');
-  btnFood.forEach( btn => { btn.addEventListener('click', (e) => { addProduct(e.target.name) }) })
-}
-
-const getData = () => {
-  fetch('../data/menu.json')
-    .then( res => res.json() )
-    .then( res => {
-      menu = res.menu
-      renderMenu(menu)
-    })
-}
-
-getData();
-
-const activeItem = (item) => {
-  prodMenuItems.forEach( element => {
-    element.classList.remove('tab-active')
-  });
-  item.classList.add('tab-active');
-}
-
-const showSection = (section) => {
-  sectionCombo.classList.remove('product-show');
-  sectionPizza.classList.remove('product-show');
-  sectionBeverage.classList.remove('product-show');
-  sectionDessert.classList.remove('product-show');
-  section.classList.add('product-show');
-}
-
-const showProductSection = (prodMenuItem, sectionMenu) => {
-  activeItem(prodMenuItem);
-  showSection(sectionMenu);
-}
-
-prodMenuItems[0].addEventListener('click', () => showProductSection(prodMenuItems[0], sectionCombo) );
-prodMenuItems[1].addEventListener('click', () => showProductSection(prodMenuItems[1], sectionPizza) );
-prodMenuItems[2].addEventListener('click', () => showProductSection(prodMenuItems[2], sectionBeverage) );
-prodMenuItems[3].addEventListener('click', () => showProductSection(prodMenuItems[3], sectionDessert) );
-
-menuItems[0].addEventListener('click', () => showProductSection(prodMenuItems[1], sectionPizza) );
-menuItems[1].addEventListener('click', () => showProductSection(prodMenuItems[2], sectionBeverage) );
-menuItems[2].addEventListener('click', () => showProductSection(prodMenuItems[3], sectionDessert) );
-
-
 const comboCardTemplate = (combo) => {
   let products = "";
   combo.products.forEach( prod => {
@@ -191,3 +142,44 @@ const foodCardTemplate = (food) => {
     </div>
   </article>`
 }
+
+const renderMenu = (menu) => {
+  menu.combo.forEach( combo => { sectionCombo.insertAdjacentHTML('beforeend', comboCardTemplate(combo)); });
+  menu.pizza.forEach( pizza => { sectionPizza.insertAdjacentHTML('beforeend', foodCardTemplate(pizza)); });
+  menu.beverage.forEach( beverage => { sectionBeverage.insertAdjacentHTML('beforeend', foodCardTemplate(beverage)); });
+  menu.dessert.forEach( dessert => { sectionDessert.insertAdjacentHTML('beforeend', foodCardTemplate(dessert)); });
+
+  const btnFood = document.querySelectorAll('.btn-food');
+  btnFood.forEach( btn => { btn.addEventListener('click', (e) => { addProduct(e.target.name) }) })
+}
+
+renderMenu(menu)
+
+const activeItem = (item) => {
+  prodMenuItems.forEach( element => {
+    element.classList.remove('tab-active')
+  });
+  item.classList.add('tab-active');
+}
+
+const showSection = (section) => {
+  sectionCombo.classList.remove('product-show');
+  sectionPizza.classList.remove('product-show');
+  sectionBeverage.classList.remove('product-show');
+  sectionDessert.classList.remove('product-show');
+  section.classList.add('product-show');
+}
+
+const showProductSection = (prodMenuItem, sectionMenu) => {
+  activeItem(prodMenuItem);
+  showSection(sectionMenu);
+}
+
+prodMenuItems[0].addEventListener('click', () => showProductSection(prodMenuItems[0], sectionCombo) );
+prodMenuItems[1].addEventListener('click', () => showProductSection(prodMenuItems[1], sectionPizza) );
+prodMenuItems[2].addEventListener('click', () => showProductSection(prodMenuItems[2], sectionBeverage) );
+prodMenuItems[3].addEventListener('click', () => showProductSection(prodMenuItems[3], sectionDessert) );
+
+menuItems[0].addEventListener('click', () => showProductSection(prodMenuItems[1], sectionPizza) );
+menuItems[1].addEventListener('click', () => showProductSection(prodMenuItems[2], sectionBeverage) );
+menuItems[2].addEventListener('click', () => showProductSection(prodMenuItems[3], sectionDessert) );
