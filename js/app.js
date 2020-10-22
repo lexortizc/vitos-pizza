@@ -9,8 +9,9 @@ const sectionBeverage = document.querySelector("#products-beverages");
 const sectionDessert = document.querySelector("#products-desserts");
 
 const toggleShoppingCart = () => {
-  if(shoppingCartCounter !== 0) {
-    document.querySelector('#shopping-cart-menu').classList.toggle('hide-cart') 
+  const cart = document.querySelector('#shopping-cart-menu');
+  if(shoppingCartCounter !== 0 || !cart.classList.contains('hide-cart')) {
+    cart.classList.toggle('hide-cart');
   }
 }
 document.querySelector('#shopping-cart').addEventListener('click', toggleShoppingCart)
@@ -43,17 +44,21 @@ const getShoppingList = () => {
 
 const renderShoppingCart = (products) => {
   let shoppingCartPay = 0;
-  shoppingCartCounter = 0;
+  let deleteCounter = 0;
+  shoppingCartCounter = products.length;
   shoppingCartTable.innerHTML = `<tr class="bold"><td class="text-center">Producto</td><td class="text-center">Eliminar</td></tr>`
 
   products.forEach( p => {
-    const item = `<tr class="thin"><td>${p.name}</td><td><button class="btn btn-delete"><i class="fas fa-trash-alt"></i></button></td></tr>`
+    const item = `<tr class="thin"><td>${p.name}</td><td><button name="${deleteCounter}" class="btn btn-delete"><i class="fas fa-trash-alt"></i></button></td></tr>`
     shoppingCartTable.insertAdjacentHTML('beforeend', item)
-    shoppingCartCounter++;
     shoppingCartPay += parseFloat(p.price);
-    document.querySelector('#shopping-cart-items').innerText = shoppingCartCounter.toString();
-    document.querySelector('#shopping-cart-pay span').innerText = `$${shoppingCartPay.toFixed(2)}`;
+    deleteCounter++;
   })
+  document.querySelector('#shopping-cart-items').innerText = shoppingCartCounter.toString();
+  document.querySelector('#shopping-cart-pay span').innerText = `$${shoppingCartPay.toFixed(2)}`;
+
+  const btnDelete = document.querySelectorAll('.btn-delete');
+  btnDelete.forEach( btn => { btn.addEventListener('click', (e) => { removeProduct(e.target.name) }) })
 }
 
 renderShoppingCart(getShoppingList())
@@ -66,6 +71,14 @@ const addProduct = (idProduct) => {
   }
   setShoppingList(products);
   renderShoppingCart(getShoppingList());
+}
+
+const removeProduct = (index) => {
+  const shoppingCart = getShoppingList();
+  shoppingCart.splice(index, 1);
+  setShoppingList(shoppingCart);
+  renderShoppingCart(shoppingCart);
+  (shoppingCart.length === 0) ? toggleShoppingCart() : null;
 }
 
 const renderMenu = (menu) => {
