@@ -50,9 +50,9 @@ const setShoppingList = (shoppingList) => {
 
 const getShoppingList = () => {
   let shoppingList = []
-  const localShoppingList = localStorage.getItem('localShoppingList')
+  const localShoppingList = localStorage.getItem('localShoppingList');
   if(localShoppingList !== null) {
-    shoppingList = JSON.parse(localShoppingList)
+    shoppingList = JSON.parse(localShoppingList);
   }
   return shoppingList
 }
@@ -72,14 +72,16 @@ const renderShoppingCart = (products) => {
   document.querySelector('#shopping-cart-items').innerText = shoppingCartCounter.toString();
   document.querySelector('#shopping-cart-pay span').innerText = `$${shoppingCartPay.toFixed(2)}`;
 
-  const btnDelete = document.querySelectorAll('.btn-delete');
-  btnDelete.forEach( btn => { btn.addEventListener('click', (e) => { removeProduct(e.target.name) }) })
+  document.querySelectorAll('.btn-delete').forEach( btn => {
+    btn.addEventListener('click', (e) => { removeProduct(e.target.name) })
+  })
 }
 
 renderShoppingCart(getShoppingList())
 
 const addProduct = (idProduct) => {
   const product = searchProduct(idProduct);
+  console.log(product);
   const products = getShoppingList();
   for (const i in product) {
     products.push(product[i]);
@@ -149,8 +151,9 @@ const renderMenu = (menu) => {
   menu.beverage.forEach( beverage => { sectionBeverage.insertAdjacentHTML('beforeend', foodCardTemplate(beverage)); });
   menu.dessert.forEach( dessert => { sectionDessert.insertAdjacentHTML('beforeend', foodCardTemplate(dessert)); });
 
-  const btnFood = document.querySelectorAll('.btn-food');
-  btnFood.forEach( btn => { btn.addEventListener('click', (e) => { addProduct(e.target.name) }) })
+  document.querySelectorAll('.btn-food').forEach( btn => {
+    btn.addEventListener('click', (e) => { addProduct(e.target.name) })
+  })
 }
 
 renderMenu(menu)

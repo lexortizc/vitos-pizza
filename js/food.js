@@ -7,43 +7,43 @@ export default class Food {
     this.image = image
   }
 
-  get id() {
-    return this._id;
-  }
+  // get id() {
+  //   return this._id;
+  // }
 
-  set id(id) {
-    this._id = id
-  }
+  // set id(id) {
+  //   this._id = id
+  // }
 
-  get name() {
-    return this._name;
-  }
+  // get name() {
+  //   return this._name;
+  // }
 
-  set name(name) {
-    this._name = name
-  }
+  // set name(name) {
+  //   this._name = name
+  // }
 
-  get description() {
-    return this._description;
-  }
+  // get description() {
+  //   return this._description;
+  // }
 
-  set description(description) {
-    this._description = description
-  }
+  // set description(description) {
+  //   this._description = description
+  // }
 
-  get price() {
-    return this._price;
-  }
+  // get price() {
+  //   return this._price;
+  // }
 
-  set price(price) {
-    this._price = price
-  }
+  // set price(price) {
+  //   this._price = price
+  // }
 
-  get image() {
-    return this._image;
-  }
+  // get image() {
+  //   return this._image;
+  // }
 
-  set image(image) {
-    this._image = image
-  }
+  // set image(image) {
+  //   this._image = image
+  // }
 }
